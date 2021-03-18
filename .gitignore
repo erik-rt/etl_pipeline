@@ -1,1 +1,8 @@
-.pyc
+# PyCache Files
+*.pyc
+
+# Jupyter Notebook Files
+*.ipynb
+
+# Local CSV Files
+*.csv

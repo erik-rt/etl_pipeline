@@ -7,11 +7,13 @@ authors = ["erik-tastepe <erik.tastepe@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 pyspark = "^3.1.1"
+pandas = "^1.2.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 flake8 = "^3.9.0"
 pydocstyle = "^5.1.1"
+jupyter = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
