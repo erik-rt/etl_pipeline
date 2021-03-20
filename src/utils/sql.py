@@ -1,2 +1,2 @@
 class sql():
-    pass
+    drop_query = 'DROP TABLE IF EXISTS'

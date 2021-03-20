@@ -8,6 +8,7 @@ authors = ["erik-tastepe <erik.tastepe@gmail.com>"]
 python = "^3.9"
 pyspark = "^3.1.1"
 pandas = "^1.2.3"
+PyYAML = "^5.4.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
