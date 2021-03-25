@@ -6,3 +6,6 @@
 
 # Local CSV Files
 *.csv
+
+# draw.io Files
+*.drawio
