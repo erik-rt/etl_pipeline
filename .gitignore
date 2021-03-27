@@ -1,11 +1,11 @@
-# PyCache Files
+# PyCache files
 *.pyc
 
-# Jupyter Notebook Files
+# Jupyter Notebook files
 *.ipynb
 
-# Local CSV Files
-*.csv
+# Local data
+data/
 
 # draw.io Files
 *.drawio

@@ -14,6 +14,7 @@ class ETLPipeline():
         spark = (
             SparkSession.builder.appName('ETL Pipeline')
             .builder.config(conf=SparkConf())
+            .enableHiveSupport()
             .getOrCreate()
             )
         return spark
