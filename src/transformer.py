@@ -23,13 +23,13 @@ def transformer(spark, cfg):
     ).drop_duplicates()
 
     geonames_df = geonames_df.withColumn(
-        'geoname_id', geonames_df.geoname_id.cast('int')
+        'geoname_id', geonames_df['geoname_id'].cast('int')
     ).withColumn(
-        'latitude', geonames_df.latitude.cast('double')
+        'latitude', geonames_df['latitude'].cast('double')
     ).withColumn(
-        'longitude', geonames_df.longitude.cast('double')
+        'longitude', geonames_df['longitude'].cast('double')
     ).withColumn(
-        'dem', geonames_df.dem.cast('int')
+        'dem', geonames_df['dem'].cast('int')
     )
 
     geonames_df.write.mode('overwrite').parquet(
@@ -71,11 +71,11 @@ def transformer(spark, cfg):
     ).drop_duplicates()
 
     geo_info_df = geo_info_df.withColumn(
-        'geoname_id', geo_info_df.geoname_id.cast('int')
+        'geoname_id', geo_info_df['geoname_id'].cast('int')
     ).withColumn(
-        'latitude', geo_info_df.latitude.cast('double')
+        'latitude', geo_info_df['latitude'].cast('double')
     ).withColumn(
-        'longitude', geo_info_df.longitude.cast('double')
+        'longitude', geo_info_df['longitude'].cast('double')
     )
 
     geo_info_df.write.mode('overwrite').parquet(
