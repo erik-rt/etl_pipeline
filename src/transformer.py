@@ -27,15 +27,7 @@ def transformer(spark, cfg):
         ), range(len(country_info_df.schema.names)), country_info_df)
 
     geonames_table = geonames_df.select(
-        F.col('geonameid'),
-        F.col('asciiname').alias('name'),
-        F.col('latitude'),
-        F.col('longitude'),
-        F.col('feature_class'),
-        F.col('feature_code'),
-        F.col('country_code'),
-        F.col('dem'),
-        F.col('timezone')
+        [F.col(col) for col in geonames_cfg.get('final_cols')]
     ).drop_duplicates()
 
     geonames_table.write.mode('overwrite').parquet(
@@ -43,20 +35,20 @@ def transformer(spark, cfg):
     )
 
     country_info_table = country_info_df.select(
-        F.col('ISO'),
-        F.col('fips'),
-        F.col('country'),
-        F.col('capital'),
-        F.col('area_sq_km'),
-        F.col('population'),
-        F.col('tld'),
-        F.col('currency_name'),
-        F.col('phone'),
-        F.col('languages'),
-        F.col('geonameid'),
-        F.col('neighbours')
+        [F.col(col) for col in country_info_cfg.get('final_cols')]
     ).drop_duplicates()
 
     country_info_table.write.mode('overwrite').parquet(
         os.path.join(output, 'country_info/')
+    )
+
+    geo_info_table = geonames_df.join(
+        country_info_df,
+        (geonames_df.country_code == country_info_df.ISO)
+    ).select(
+        [F.col(col) for col in cfg.get('geo_info').get('final_cols')]
+    ).drop_duplicates()
+
+    geo_info_table.write.mode('overwrite').parquet(
+        os.path.join(output, 'geo_info/')
     )

@@ -9,7 +9,7 @@ spark:
   geonames:
     data: ../data/geonames.txt
     cols:
-      - geonameid
+      - geoname_id
       - name
       - asciiname
       - alternatenames
@@ -28,6 +28,16 @@ spark:
       - dem
       - timezone
       - modification_date
+    final_cols:
+      - geoname_id
+      - asciiname
+      - latitude
+      - longitude
+      - feature_class
+      - feature_code
+      - country_code
+      - dem
+      - timezone
   country_info:
     data: ../data/country_info.txt
     cols:
@@ -50,3 +60,26 @@ spark:
       - geonameid
       - neighbours
       - equivalent_fips_code
+    final_cols:
+      - ISO
+      - fips
+      - country
+      - capital
+      - area_sq_km
+      - population
+      - tld
+      - currency_name
+      - phone
+      - languages
+      - geonameid
+      - neighbours
+  geo_info:
+    final_cols:
+      - geoname_id
+      - asciiname
+      - latitude
+      - longitude
+      - feature_class
+      - country
+      - country_code
+      - neighbours
