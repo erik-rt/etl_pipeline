@@ -4,7 +4,8 @@ import pyspark.sql.functions as F
 from functools import reduce
 
 
-def transformer(spark, cfg, output):
+def transformer(spark, cfg):
+    output = cfg.get('output')
     geonames_cfg = cfg.get('geonames')
     country_info_cfg = cfg.get('country_info')
 
@@ -30,9 +31,9 @@ def transformer(spark, cfg, output):
         F.col('asciiname').alias('name'),
         F.col('latitude'),
         F.col('longitude'),
-        F.col('feature class'),
-        F.col('feature code'),
-        F.col('country code'),
+        F.col('feature_class'),
+        F.col('feature_code'),
+        F.col('country_code'),
         F.col('dem'),
         F.col('timezone')
     ).drop_duplicates()
@@ -46,10 +47,10 @@ def transformer(spark, cfg, output):
         F.col('fips'),
         F.col('country'),
         F.col('capital'),
-        F.col('area (sq km)'),
+        F.col('area_sq_km'),
         F.col('population'),
         F.col('tld'),
-        F.col('currency name'),
+        F.col('currency_name'),
         F.col('phone'),
         F.col('languages'),
         F.col('geonameid'),

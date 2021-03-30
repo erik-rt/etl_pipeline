@@ -1,19 +1,22 @@
 import os
 import psycopg2
+import yaml
 
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
-from utils.redshift_tables import make_tables
+from transformer import transformer
+# from utils.redshift_tables import make_tables
 
 
 class ETLPipeline():
-    def __init__(self):
-        pass
+    def __init__(self, cfg):
+        with open(cfg, 'r') as f:
+            self.cfg = yaml.load(f, Loader=yaml.FullLoader)
 
     def initiate_spark(self):
         spark = (
             SparkSession.builder.appName('ETL Pipeline')
-            .builder.config(conf=SparkConf())
+            .config(conf=SparkConf())
             .enableHiveSupport()
             .getOrCreate()
             )
@@ -31,11 +34,14 @@ class ETLPipeline():
         return connection, cursor
 
     def run(self):
-        connection, cursor = self.connect_to_redshift()
-        make_tables(connection, cursor, config='config.yaml')
+        spark = self.initiate_spark()
+        # connection, cursor = self.connect_to_redshift()
+        # make_tables(connection, cursor, config='config.yaml')
 
-        connection.close()
+        # connection.close()
+        transformer(spark, self.cfg.get('spark'))
 
 
 if __name__ == '__main__':
-    ETLPipeline.run()
+    etl = ETLPipeline('config.yaml')
+    etl.run()

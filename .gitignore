@@ -6,6 +6,7 @@
 
 # Local data
 data/
+output/
 
 # draw.io Files
 *.drawio

@@ -5,6 +5,7 @@ sql:
     - test
 
 spark:
+  output: ../output/
   geonames:
     data: ../data/geonames.txt
     cols:
@@ -14,19 +15,19 @@ spark:
       - alternatenames
       - latitude
       - longitude
-      - feature class
-      - feature code
-      - country code
+      - feature_class
+      - feature_code
+      - country_code
       - cc2
-      - admin1 code
-      - admin2 code
-      - admin3 code
-      - admin4 code
+      - admin1_code
+      - admin2_code
+      - admin3_code
+      - admin4_code
       - population
       - elevation
       - dem
       - timezone
-      - modification date
+      - modification_date
   country_info:
     data: ../data/country_info.txt
     cols:
@@ -36,16 +37,16 @@ spark:
       - fips
       - country
       - capital
-      - area (sq km)
+      - area_sq_km
       - population
       - continent
       - tld
-      - currency code
-      - currency name
+      - currency_code
+      - currency_name
       - phone
-      - postal code format
-      - postal code regex
+      - postal_code_format
+      - postal_code_regex
       - languages
       - geonameid
       - neighbours
-      - equivalent fips code
+      - equivalent_fips_code
