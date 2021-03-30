@@ -21,14 +21,11 @@ def transformer(spark, cfg, local_write=False):
     geonames_cfg = cfg.get('geonames')
     country_info_cfg = cfg.get('country_info')
 
-    # Assert the configurations load
-    assert output is not None
-    assert geonames_cfg is not None
-    assert country_info_cfg is not None
-
     geonames_df = spark.read.option('delimiter', '\t').csv(
         geonames_cfg.get('data')
     )
+
+    assert geonames_df.count() != 0
 
     # Rename the geonames columns
     geonames_df = reduce(lambda df, i: df.withColumnRenamed(
@@ -55,6 +52,8 @@ def transformer(spark, cfg, local_write=False):
     country_info_df = spark.read.csv(
         country_info_cfg.get('data')
     )
+
+    assert country_info_df.count() != 0
 
     # Rename the country_info columns
     country_info_df = reduce(lambda df, i: df.withColumnRenamed(
@@ -86,14 +85,7 @@ def transformer(spark, cfg, local_write=False):
         [F.col(col) for col in cfg.get('geo_info').get('final_cols')]
     ).drop_duplicates()
 
-    # Cast specific geo_info columns to the correct type
-    geo_info_df = geo_info_df.withColumn(
-        'geoname_id', geo_info_df['geoname_id'].cast('int')
-    ).withColumn(
-        'latitude', geo_info_df['latitude'].cast('double')
-    ).withColumn(
-        'longitude', geo_info_df['longitude'].cast('double')
-    )
+    assert geo_info_df.count() != 0
 
     assert dict(geo_info_df.dtypes)['geoname_id'] == 'int'
     assert dict(geo_info_df.dtypes)['latitude'] == 'double'
@@ -107,9 +99,7 @@ def transformer(spark, cfg, local_write=False):
         country_info_df.write.mode('overwrite').parquet(
             os.path.join(output, 'country_info/')
         )
-        geo_info_df.write.mode('overwrite').partitionBy(
-            'country',
-            'feature_class').parquet(
+        geo_info_df.write.mode('overwrite').parquet(
             os.path.join(output, 'geo_info/')
         )
         return None
