@@ -8,5 +8,5 @@
 data/
 output/
 
-# draw.io Files
-*.drawio
+# VSCode workspace settings
+.vscode/
