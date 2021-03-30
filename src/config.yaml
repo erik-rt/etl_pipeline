@@ -3,3 +3,49 @@ sql:
     - geonames
     - locations
     - test
+
+spark:
+  geonames:
+    data: ../data/geonames.txt
+    cols:
+      - geonameid
+      - name
+      - asciiname
+      - alternatenames
+      - latitude
+      - longitude
+      - feature class
+      - feature code
+      - country code
+      - cc2
+      - admin1 code
+      - admin2 code
+      - admin3 code
+      - admin4 code
+      - population
+      - elevation
+      - dem
+      - timezone
+      - modification date
+  country_info:
+    data: ../data/country_info.txt
+    cols:
+      - ISO
+      - ISO3
+      - ISO-numeric
+      - fips
+      - country
+      - capital
+      - area (sq km)
+      - population
+      - continent
+      - tld
+      - currency code
+      - currency name
+      - phone
+      - postal code format
+      - postal code regex
+      - languages
+      - geonameid
+      - neighbours
+      - equivalent fips code
