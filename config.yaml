@@ -1,13 +1,13 @@
 sql:
   tables:
     - geonames
-    - locations
-    - test
+    - country_info
+    - geo_info
 
 spark:
-  output: ../output/
+  output: output/
   geonames:
-    data: ../data/geonames.txt
+    data: data/geonames.txt
     cols:
       - geoname_id
       - name
@@ -39,7 +39,7 @@ spark:
       - dem
       - timezone
   country_info:
-    data: ../data/country_info.txt
+    data: data/country_info.csv
     cols:
       - ISO
       - ISO3
