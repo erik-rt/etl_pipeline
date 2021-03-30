@@ -1,3 +1,4 @@
+import os
 import pyspark.sql.functions as F
 
 from functools import reduce
@@ -34,7 +35,11 @@ def transformer(spark, cfg, output):
         F.col('country code'),
         F.col('dem'),
         F.col('timezone')
-        )
+    ).drop_duplicates()
+
+    geonames_table.write.mode('overwrite').parquet(
+        os.path.join(output, 'geonames/')
+    )
 
     country_info_table = country_info_df.select(
         F.col('ISO'),
@@ -49,4 +54,8 @@ def transformer(spark, cfg, output):
         F.col('languages'),
         F.col('geonameid'),
         F.col('neighbours')
+    ).drop_duplicates()
+
+    country_info_table.write.mode('overwrite').parquet(
+        os.path.join(output, 'country_info/')
     )
