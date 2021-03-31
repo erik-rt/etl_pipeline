@@ -92,7 +92,7 @@ python src/etl.py
 
 ### What if the data is increased by 100x?
 
-Though the pipeline is currently run locally, if the volume of data were to become too large, it would be wise to run the pipeline on an AWS EMR cluster. EMR provides enough parallel computing power with bodes well for Spark pipelines.
+Though the pipeline is currently run locally, if the volume of data were to become too large, it would be wise to run the pipeline on an AWS EMR cluster. EMR provides enough parallel computing power which bodes well for Spark pipelines.
 
 ### What if the pipeline needs to be run daily?
 
