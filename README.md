@@ -54,7 +54,7 @@ The final model includes a fact table, the `geo_info` table, and two dimension t
 | geonameid | int | Geographical placename id of the country |
 | neighbours | string | Country codes of the surrounding countries |
 
-## Pre-requisites
+## Prerequisites
 
 ### Spark
 
@@ -62,8 +62,32 @@ This pipeline uses PySpark to handle the data, so a proper installation is requi
 
 ### Data
 
-If you would like to demo the pipeline for yourself you will need to download the appropriate data from the [downloads](https://download.geonames.org/export/dump/) page. The two files I worked with `countryInfo.txt` and the contents of the `allCountries.zip` file.
+If you would like to demo the pipeline for yourself you will need to download the appropriate data from the [downloads](https://download.geonames.org/export/dump/) page. The files are large enough that it couldn't be included in the repository as GitHub sets a strict file size limit. The two files I worked with are `countryInfo.txt` and the contents of the `allCountries.zip` file. The only file in `allCountries.zip` is a text file called `allCountries.txt`.
 
+### Poetry
+
+This project utilizes the [Poetry](https://python-poetry.org/docs/#installation) Python package manager to handle dependencies.
+
+## Testing
+
+To test the pipeline for yourself, the items detailed in the [Prerequisites](#prerequisites) section will need to be addressed first. Afterwards, clone the repository to your local machine, step into the root directory, and start the Poetry shell by running
+
+```python
+poetry shell
+```
+You will then be able to install the project dependencies with
+
+```python
+poetry install
+```
+
+The pipeline is configuration-driven; as such, you will need to make sure that the project paths match that in `config.yaml`. This is important for where you place the downloaded data you will be working with. Place both `countryInfo.txt` and `allCountries.txt` into a folder at the root directory called `data/`, as `config.yaml` looks for the path `data/<file>`.
+
+Finally, to run the pipeline, from the root directory run
+
+```python
+python src/etl.py
+```
 ## Future Considerations
 
 ### What if the data is increased by 100x?

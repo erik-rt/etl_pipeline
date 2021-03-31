@@ -7,7 +7,7 @@ sql:
 spark:
   output: output/
   geonames:
-    data: data/geonames.txt
+    data: data/allCountries.txt
     cols:
       - geoname_id
       - name
@@ -39,7 +39,7 @@ spark:
       - dem
       - timezone
   country_info:
-    data: data/country_info.csv
+    data: data/countryInfo.txt
     cols:
       - ISO
       - ISO3
