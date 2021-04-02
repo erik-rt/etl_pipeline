@@ -72,5 +72,4 @@ class ETLPipeline():
 
 
 if __name__ == '__main__':
-    etl = ETLPipeline('config.yaml')
-    etl.run()
+    ETLPipeline('config.yaml').run()
