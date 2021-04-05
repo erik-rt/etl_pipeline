@@ -10,6 +10,8 @@ The purpose of this pipeline is to demonstrate the extraction, transformation, a
 
 The final model includes a fact table, the `geo_info` table, and two dimension tables, the `geonames` table and the `country_info` table. The `geo_info` table was developed to exclude extraneous parameters that likely would not be of immediate interest to a user performing ad-hoc queries. The dimension tables provide additional information that can be further investigated should the user choose to do so.
 
+### Data Dictionary
+
 *geo_info table*
 
 | column | data type | description |
