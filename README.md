@@ -60,7 +60,7 @@ The final model includes a fact table, the `geo_info` table, and two dimension t
 
 ### Spark
 
-This pipeline uses PySpark to handle the data, so a proper installation is required, either through `pip` or through the Apache Spark [downloads](https://spark.apache.org/downloads.html) page.
+This pipeline uses PySpark to handle the data, so a proper installation is required. You can either use `pip` or download the distribution via the Apache Spark [downloads](https://spark.apache.org/downloads.html) page.
 
 ### Data
 
